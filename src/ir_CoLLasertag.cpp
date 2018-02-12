@@ -28,17 +28,16 @@ const int16_t kMARK = 0;
 
 #if SEND_COL_LASERTAG
 // Send a Lasertag packet.
-// This protocol is pretty much just raw Manchester encoding.
 //
 // Args:
 //   data:    The message you wish to send.
 //   nbits:   Bit size of the protocol you want to send.
 //   repeat:  Nr. of extra times the data will be sent.
 //
-// Status: STABLE / Working.
+// Status: Not yet working
 //
 
-void IRsend::sendLasertag(uint64_t data, uint16_t nbits, uint16_t repeat) {
+void IRsend::sendCoLLasertag(uint64_t data, uint16_t nbits, uint16_t repeat) {
   if (nbits > sizeof(data) * 8)
     return;  // We can't send something that big.
 
@@ -64,7 +63,6 @@ void IRsend::sendLasertag(uint64_t data, uint16_t nbits, uint16_t repeat) {
 
 #if DECODE_COL_LASERTAG
 // Decode the supplied Lasertag message.
-// This protocol is pretty much just raw Manchester encoding.
 //
 // Args:
 //   results: Ptr to the data to decode and where to store the decode result.
