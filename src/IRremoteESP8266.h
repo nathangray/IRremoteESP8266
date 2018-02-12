@@ -292,7 +292,7 @@ enum decode_type_t {
 #define MIDEA_MIN_REPEAT             0U
 #define LASERTAG_BITS               13U
 #define LASERTAG_MIN_REPEAT          0U
-#define COL_LASERTAG_BITS           41U
+#define COL_LASERTAG_BITS           13U
 
 // Turn on Debugging information by uncommenting the following line.
 // #define DEBUG 1

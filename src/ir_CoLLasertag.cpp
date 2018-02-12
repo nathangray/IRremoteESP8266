@@ -81,9 +81,8 @@ void IRsend::sendLasertag(uint64_t data, uint16_t nbits, uint16_t repeat) {
 //   https://en.wikipedia.org/wiki/Manchester_code
 bool IRrecv::decodeCoLLasertag(decode_results *results, uint16_t nbits,
                             bool strict) {
+
   if (results->rawlen < MIN_COL_LASERTAG_SAMPLES) return false;
-Serial.print("Raw length: ");		Serial.println(results->rawlen);
-Serial.print("Bits: "); Serial.println(nbits);
 
   // Compliance
   if (strict && nbits != COL_LASERTAG_BITS) return false;
@@ -96,25 +95,16 @@ Serial.print("Bits: "); Serial.println(nbits);
   if (!match(results->rawbuf[offset++], COL_LASERTAG_HEADER,0,COL_LASERTAG_DELTA)) return false;
 
   // Data
-for (; offset < results->rawlen; actual_bits++) {
-	if(match(results->rawbuf[offset], COL_LASERTAG_ONE_TICK, COL_LASERTAG_TOLERANCE))
-		data = (data << 1) | 1;  // 1
-	else
-		data <<= 1;  // 0
+	for (; offset < results->rawlen; actual_bits++) {
+		if(match(results->rawbuf[offset], COL_LASERTAG_ONE_TICK, COL_LASERTAG_TOLERANCE))
+			data = (data << 1) | 1;  // 1
+		else
+			data <<= 1;  // 0
 
-	offset++;
-}
+		offset++;
+	}
 
-/*
-  if (data_result.success == false) return false;
-  data = data_result.data;
-  offset += data_result.used;
-	*/
-  // Footer (None)
-
-  // Compliance
-  //if (actual_bits < nbits) return false;  // Less data than we expected.
-  //if (strict && actual_bits != COL_LASERTAG_BITS) return false;
+	// There is a footer or checksum, but I haven't figured it out yet.
 
   // Success
   results->decode_type = COL_LASERTAG;

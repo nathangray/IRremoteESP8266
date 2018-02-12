@@ -103,6 +103,7 @@ std::string typeToString(const decode_type_t protocol,
     case AIWA_RC_T501:  result = "AIWA_RC_T501";      break;
     case ARGO:          result = "ARGO";              break;
     case CARRIER_AC:    result = "CARRIER_AC";        break;
+		case COL_LASERTAG:  result = "Call of Life Lasertag"; break;
     case COOLIX:        result = "COOLIX";            break;
     case DAIKIN:        result = "DAIKIN";            break;
     case DENON:         result = "DENON";             break;
