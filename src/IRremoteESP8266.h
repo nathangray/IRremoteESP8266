@@ -154,6 +154,9 @@
 #define DECODE_LASERTAG      true
 #define SEND_LASERTAG        true
 
+#define DECODE_COL_LASERTAG  true
+#define SEND_COL_LASERTAG    false // Not implemented
+
 #define DECODE_CARRIER_AC    true
 #define SEND_CARRIER_AC      true
 
@@ -212,6 +215,7 @@ enum decode_type_t {
   MIDEA,
   MAGIQUEST,
   LASERTAG,
+	COL_LASERTAG,
   CARRIER_AC,
   HAIER_AC
 };
@@ -288,6 +292,7 @@ enum decode_type_t {
 #define MIDEA_MIN_REPEAT             0U
 #define LASERTAG_BITS               13U
 #define LASERTAG_MIN_REPEAT          0U
+#define COL_LASERTAG_BITS           41U
 
 // Turn on Debugging information by uncommenting the following line.
 // #define DEBUG 1

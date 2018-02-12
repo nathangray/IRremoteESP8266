@@ -442,6 +442,11 @@ bool IRrecv::decode(decode_results *results, irparams_t *save) {
   if (decodeLasertag(results))
     return true;
 #endif
+#if DECODE_CALLOFLIFE_LASERTAG
+  DPRINTLN("Attempting CoL Lasertag decode");
+  if (decodeCoLLasertag(results))
+    return true;
+#endif
 #if DECODE_GREE
   // Gree based-devices use a similar code to Kelvinator ones, to avoid false
   // matches this needs to happen after decodeKelvinator().
